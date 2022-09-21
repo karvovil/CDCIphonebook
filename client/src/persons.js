@@ -18,4 +18,5 @@ const put = (id, newPerson) => {
   const request = axios.put(`${baseUrl}/${id}`, newPerson)
   return request.then(response => response.data)
 }
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { getAll, create, deletePerson, put }
