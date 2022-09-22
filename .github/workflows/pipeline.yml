@@ -24,4 +24,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "puhelinluetteloaplikaatio"
           heroku_email: "villekarvonen1@gmail.com"
+          healthcheck: "https://puhelinluetteloaplikaatio.herokuapp.com/"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
           
