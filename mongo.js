@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-const { response } = require('express')
 const mongoose = require('mongoose')
 
 if (process.argv.length<3) {
@@ -39,7 +38,7 @@ if (process.argv.length<4) {
   })
 
   // eslint-disable-next-line no-unused-vars
-  person.save().then(result => {
+  person.save().then( () => {
     console.log(`Added ${person.name} number ${person.number} to phonebook`)
     mongoose.connection.close()
   })
