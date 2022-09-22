@@ -24,7 +24,16 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "puhelinluetteloaplikaatio"
           heroku_email: "villekarvonen1@gmail.com"
-          healthcheck: "https://puhelinluetteloaplikaatio.herokuapp.com/"
+          healthcheck: "https://puhelinluetteloaplikaatio.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
-          
+  tag_release:
+    needs: [simple_deployment_pipeline]        
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0 
+        if: ${{ !contains(github.event.head_commit.message, '#skip') }}
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
